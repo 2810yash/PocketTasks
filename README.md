@@ -5,19 +5,19 @@ PocketTasks is a tiny, single‑screen task manager that demonstrates clean stat
 ## Features
 
 - Add tasks with inline validation
-- Debounced search (300 ms)
+- With Search option
 - Filter chips: All / Active / Done
 - Tap to toggle done (with Undo via SnackBar)
 - Swipe to delete (with Undo)
 - Circular progress ring showing completed/total
-- Light & Dark themes (Material 3)
-- Efficient with 100+ tasks (`ListView.builder`)
+- Light & Dark themes according to your device
+- Efficient with 100+ tasks
 
 ## Architecture
 
 - Data model: `Task { id, title, done, createdAt }`
 - State management: Riverpod (`StateNotifier`) with immutable `TaskState`
-- Persistence: `shared_preferences` storing the entire task list as JSON
+- Persistence: `shared_preferences` storing the task list as JSON
   - Storage key: `pocket_tasks_v1`
 - Undo: Each mutation stores the previous `tasks` list in `history`; `undo()` swaps current with previous and persists
 - Search & filter: `visibleTasks` computes the list from `tasks` using `query` and `TaskFilter`
@@ -33,8 +33,6 @@ lib/
     screens/home_screen.dart     # Single screen UI and interactions
     state/task_controller.dart   # Riverpod StateNotifier, persistence, undo
     widgets/progress_ring.dart   # CustomPainter progress ring
-test/
-  task_filter_test.dart          # Unit test for search + filters
 ```
 
 ## Getting started
@@ -50,12 +48,6 @@ test/
 
    ```bash
    flutter run
-   ```
-
-4. Run tests:
-
-   ```bash
-   flutter test
    ```
 
 ## Implementation notes
